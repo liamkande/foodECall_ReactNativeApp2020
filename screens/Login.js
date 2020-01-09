@@ -22,7 +22,7 @@ class Login extends Component {
 
   render() {
     return (
-      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/icons/foodECallBG.png')}>
+      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/signUpBgrImg.png')}>
       <View style={styles.container}>
         <TextInput
           style={styles.border}

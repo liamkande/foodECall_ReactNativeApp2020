@@ -46,7 +46,7 @@ class AddressesForm extends Component {
     const { home, work, campus, custom } = this.state.upload
 
     return (
-      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/icons/foodECallBG.png')}>
+      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/foodECallBG.png')}>
         <View style={styles.container}>
         <TouchableOpacity  style={styles.row} onPress={this.onPress}>
           <FontAwesome style={{marginRight:'50%'}} name='close' size={40} color='#E23E81' />

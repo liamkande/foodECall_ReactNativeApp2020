@@ -9,6 +9,10 @@ const user = (state = {}, action) => {
         return {...state, email: action.payload}
       case 'UPDATE_PASSWORD':
         return {...state, password: action.payload}
+        case 'UPDATE_CITY':
+          return {...state, city: action.payload}
+          case 'UPDATE_STATE':
+            return {...state, state: action.payload}
         case 'UPDATE_FIRSTNAME':
           return {...state, firstNm: action.payload}
           case 'UPDATE_LASTNAME':

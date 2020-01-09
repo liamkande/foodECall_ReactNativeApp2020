@@ -59,7 +59,7 @@ class PaymentsForm extends Component {
     const { routeName } = this.props.navigation.state
     const { card1, card2, card3, card4, card5 } = this.state.upload
     return (
-      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/icons/foodECallBG.png')}>
+      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/foodECallBG.png')}>
           <SafeAreaView style={{flex:1, marginTop:20}}>
           <Modal animationType='fade' transparent={true} visible={this.state.showModal} onRequestClose={() => this.closeModal()}>
             <SafeAreaView style={[styles.container, {backgroundColor:'rgba(0, 0, 0, 0.5)' }]}>

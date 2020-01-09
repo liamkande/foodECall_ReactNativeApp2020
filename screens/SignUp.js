@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Text, View, TextInput, ImageBackground, Image, TouchableOpacity } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { updateEmail, updatePassword, updateFirstNm, updateLastNm, updatePhone, signup, updateUser} from '../actions/user'
+import { updateEmail, updatePassword, updateCity, updateState, updateFirstNm, updateLastNm, updatePhone, signup, updateUser} from '../actions/user'
 import styles from '../styles'
 
 
@@ -26,7 +26,7 @@ class SignUp extends Component {
   render() {
     const { routeName } = this.props.navigation.state
     return (
-      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/icons/foodECallBG.png')}>
+      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/signUpBgrImg.png')}>
         <View style={styles.container}>
         { routeName === 'Edit' &&
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')} >
@@ -75,7 +75,23 @@ class SignUp extends Component {
           placeholder='Password'
           secureTextEntry={true}
         />
-        { routeName === 'SignUp' &&
+        <TextInput
+          style={styles.border}
+          editable={routeName === 'SignUp' ? true : false}
+          value={this.props.user.city}
+          onChangeText={input => this.props.updateCity(input)}
+          placeholderTextColor='#ffff'
+          placeholder='City'
+        />
+        <TextInput
+          style={styles.border}
+          editable={routeName === 'SignUp' ? true : false}
+          value={this.props.user.state}
+          onChangeText={input => this.props.updateState(input)}
+          placeholderTextColor='#ffff'
+          placeholder='State'
+        />
+        {routeName === 'SignUp' &&
         <TouchableOpacity style={styles.button} title='SignUp' onPress={this.signup}>
           <Text style={{color:'#ffff'}}>DONE</Text>
         </TouchableOpacity>
@@ -88,7 +104,7 @@ class SignUp extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return ( bindActionCreators({ updateEmail, updatePassword, updateFirstNm, updateLastNm, updatePhone, signup, updateUser }, dispatch)
+  return ( bindActionCreators({ updateEmail, updatePassword, updateCity, updateState, updateFirstNm, updateLastNm, updatePhone, signup, updateUser }, dispatch)
 )
 }
 

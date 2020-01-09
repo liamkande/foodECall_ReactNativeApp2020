@@ -18,7 +18,7 @@ import TextButton from '../components/TextButton'
   render() {
     const { routeName } = this.props.navigation.state
     return (
-      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/icons/foodECallBG.png')}>
+      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/foodECallBG.png')}>
           <SafeAreaView style={{flex:1, marginTop:20}}>
 
 

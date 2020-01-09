@@ -259,9 +259,10 @@ export default styles = StyleSheet.create({
     color: 'white',
     margin: 10,
     padding: 15,
-    fontSize: 16,
+    fontSize: 24,
+    fontWeight: 'bold',
     borderColor: '#d3d3d3',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     textAlign: 'center'
   },
   footer: {

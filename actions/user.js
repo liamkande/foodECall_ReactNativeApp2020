@@ -11,6 +11,14 @@ export const updatePassword = (password) => {
   return {type:'UPDATE_PASSWORD', payload: password}
 }
 
+export const updateCity = (city) => {
+  return {type:'UPDATE_CITY', payload: city}
+}
+
+export const updateState = (state) => {
+  return {type:'UPDATE_STATE', payload: state}
+}
+
 export const updateUsername = (username) => {
   return {type:'UPDATE_USERNAME', payload: username}
 }
@@ -114,7 +122,7 @@ export const updateUser = () => {
 export const signup = () => {
 	return async (dispatch, getState) => {
 		try {
-			const { email, password, phone, firstNm, lastNm, photo, username, homeAddress1, homeAddress2, homeCity, homeState, homeZipCode} = getState().user
+			const { email, password, phone, firstNm, lastNm, photo, username, city, state, homeAddress1, homeAddress2, homeCity, homeState, homeZipCode} = getState().user
 			const response = await firebase.auth().createUserWithEmailAndPassword(email, password)
 			if(response.user.uid) {
 				const user = {
@@ -125,6 +133,8 @@ export const signup = () => {
           username: `${firstNm} ${lastNm}`,
           photo: '',
           phone: phone,
+          city: city,
+          state: state,
           addresses: {home:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
                       work:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
                       campus:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
