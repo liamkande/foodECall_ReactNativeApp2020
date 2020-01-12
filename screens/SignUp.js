@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, TextInput, ImageBackground, Image, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, TextInput, ImageBackground, Image, TouchableOpacity, } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { updateEmail, updatePassword, updateCity, updateState, updateFirstNm, updateLastNm, updatePhone, signup, updateUser} from '../actions/user'
@@ -27,6 +27,7 @@ class SignUp extends Component {
     const { routeName } = this.props.navigation.state
     return (
       <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/signUpBgrImg.png')}>
+      <ScrollView >
         <View style={styles.container}>
         { routeName === 'Edit' &&
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')} >
@@ -96,8 +97,8 @@ class SignUp extends Component {
           <Text style={{color:'#ffff'}}>DONE</Text>
         </TouchableOpacity>
         }
-
-      </View>
+        </View>
+      </ScrollView>
       </ImageBackground>
     )
   }
