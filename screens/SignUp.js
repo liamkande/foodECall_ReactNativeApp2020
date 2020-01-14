@@ -26,7 +26,7 @@ class SignUp extends Component {
   render() {
     const { routeName } = this.props.navigation.state
     return (
-      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/SignUpBgrd.png')}>
+      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/SignUpBG.png')}>
       <KeyboardAvoidingView behavior="padding" enabled>
       <ScrollView style={{marginTop:'20%'}}>
         <View style={[styles.container, {alignSelf:'center', width:'100%'}]}>
