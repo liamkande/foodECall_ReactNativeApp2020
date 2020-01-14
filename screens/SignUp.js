@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Text, View, ScrollView, TextInput, ImageBackground, Image, TouchableOpacity, } from 'react-native'
+import { Text, View, ScrollView, TextInput, ImageBackground, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { updateEmail, updatePassword, updateCity, updateState, updateFirstNm, updateLastNm, updatePhone, signup, updateUser} from '../actions/user'
@@ -26,16 +26,16 @@ class SignUp extends Component {
   render() {
     const { routeName } = this.props.navigation.state
     return (
-      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/signUpBgrImg.png')}>
-      <ScrollView >
-        <View style={styles.container}>
+      <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/SignUpBgrd.png')}>
+      <KeyboardAvoidingView behavior="padding" enabled>
+      <ScrollView style={{marginTop:'20%'}}>
+        <View style={[styles.container, {alignSelf:'center', width:'100%'}]}>
         { routeName === 'Edit' &&
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')} >
           <Image style={styles.roundImage} source={{uri: !this.props.user.photo ? 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/Asset%201.jpg?alt=media&token=5c14befd-83cc-4aaa-9ac1-896d5908e50c' : this.props.user.photo}}/>
           <Text style={styles.subtitle}>Upload Photo</Text>
         </TouchableOpacity>
         }
-
         <TextInput
           style={styles.border}
           editable={routeName === 'SignUp' ? true : false}
@@ -68,7 +68,7 @@ class SignUp extends Component {
           placeholder='Mobile'
         />
         <TextInput
-          style={styles.border}
+          style={[styles.border, {marginBottom:50}]}
           editable={routeName === 'SignUp' ? true : false}
           value={this.props.user.password}
           onChangeText={input => this.props.updatePassword(input)}
@@ -76,29 +76,15 @@ class SignUp extends Component {
           placeholder='Password'
           secureTextEntry={true}
         />
-        <TextInput
-          style={styles.border}
-          editable={routeName === 'SignUp' ? true : false}
-          value={this.props.user.city}
-          onChangeText={input => this.props.updateCity(input)}
-          placeholderTextColor='#ffff'
-          placeholder='City'
-        />
-        <TextInput
-          style={styles.border}
-          editable={routeName === 'SignUp' ? true : false}
-          value={this.props.user.state}
-          onChangeText={input => this.props.updateState(input)}
-          placeholderTextColor='#ffff'
-          placeholder='State'
-        />
+
         {routeName === 'SignUp' &&
-        <TouchableOpacity style={styles.button} title='SignUp' onPress={this.signup}>
-          <Text style={{color:'#ffff'}}>DONE</Text>
+        <TouchableOpacity style={[styles.button, {marginBottom:50}]} title='SignUp' onPress={this.signup}>
+          <Text style={{color:'#ffff', fontSize:18, fontWeight:'bold'}}>DONE</Text>
         </TouchableOpacity>
         }
         </View>
-      </ScrollView>
+        </ScrollView>
+        </KeyboardAvoidingView>
       </ImageBackground>
     )
   }

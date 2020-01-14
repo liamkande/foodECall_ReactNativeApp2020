@@ -231,11 +231,11 @@ export default styles = StyleSheet.create({
     alignSelf:'center',
     fontSize:14,
   },
-  btnGoogle: {
-    backgroundColor: 'rgba(255, 255, 255, .9)',
+  btnFacebook: {
+    backgroundColor: '#455C96',
     shadowColor: "black",
-    borderColor: 'black',
-    borderWidth: 2.5,
+    borderColor: 'white',
+    borderWidth: 2,
     shadowOpacity: 0.1,
     shadowOffset: {
       height: 3,
@@ -250,14 +250,15 @@ export default styles = StyleSheet.create({
     paddingVertical:10,
     alignItems: 'center',
     borderColor: '#d3d3d3',
-    borderWidth: 1,
+    borderWidth: 3,
     borderRadius: 5,
-    width: 200
+    width: '60%'
   },
   border: {
-    width: '85%',
-    color: 'white',
+    width: '70%',
+    color: '#ffff',
     margin: 10,
+    marginBottom:26,
     padding: 15,
     fontSize: 24,
     fontWeight: 'bold',

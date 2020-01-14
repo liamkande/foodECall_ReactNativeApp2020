@@ -55,7 +55,7 @@ class Main extends Component {
         <View style={{marginTop:100}}/>
         <View  style={styles.btn}>
         <TextButton onPress={this.register} style={styles.btnRegister} space={12}>
-          <Text style={{color:'white'}}>REGISTER</Text>
+          <Text style={{color:'white'}}>SIGN UP</Text>
         </TextButton>
         </View>
         <View  style={styles.btn}>
@@ -65,12 +65,12 @@ class Main extends Component {
         </View>
 
         <View  style={styles.btn}>
-        <TextButton onPress={() => this.props.facebookLogin()} style={styles.btnGoogle} space={6}>
-        <Text><FontAwesome
-          name='google'
-          color='black'
+        <TextButton onPress={() => this.props.facebookLogin()} style={styles.btnFacebook} space={6}>
+        <Text style={{color:'white'}}><FontAwesome
+          name='facebook'
+          color='white'
           size={30}
-        />  Sign In Facebook</Text>
+        />  Sign Up with Facebook</Text>
         </TextButton>
         </View>
         <View style={{marginBottom:40}}/>

@@ -31,7 +31,7 @@ export const HomeNavigator = createAppContainer(createStackNavigator(
     Home: {
       screen:HomeScreen ,
       navigationOptions: ({ navigation }) => ({
-        headerTitle:(<AppTitle />),
+        headerTitle:(<AppTitle title='Food-E-Call' />),
         headerLeft: (
           <IconBtn name='ios-menu'
                    size={30}
