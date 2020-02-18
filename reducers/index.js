@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
+import {combineReducers } from 'redux'
 
 
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':
-        return action.payload
+        return {...state, login: action.payload}
       case 'UPDATE_EMAIL':
         return {...state, email: action.payload}
       case 'UPDATE_PASSWORD':
@@ -20,11 +20,11 @@ const user = (state = {}, action) => {
             case 'UPDATE_PHONE':
               return {...state, phone: action.payload}
               case 'UPDATE_PHOTO':
-                return { ...state, photo: action.payload }
+                return {...state, photo: action.payload }
                 case 'UPDATE_ADDRESSES':
-                  return { ...state, addresses: action.payload }
+                  return {...state, addresses: action.payload }
                   case 'UPDATE_PAYMENTS':
-                    return { ...state, payments: action.payload }
+                    return {...state, payments: action.payload }
 
       default:
         return state
@@ -58,6 +58,20 @@ const categories = (state= {}, action) => {
   }
 }
 
+
+const foods = (state= {}, action) => {
+  switch (action.type) {
+    case 'GET_FOODS':
+      return {...state, feed: action.payload}
+      case 'GET_BG_IMG':
+        return {...state, bgImg: action.payload}
+    default:
+      return state
+  }
+}
+
+
+
 const modal = (state = null, action) => {
   switch (action.type) {
     case 'OPEN_MODAL':
@@ -74,6 +88,7 @@ const rootReducer = combineReducers({
   post,
   modal,
   categories,
+  foods,
 })
 
 export default rootReducer

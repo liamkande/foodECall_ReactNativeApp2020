@@ -78,10 +78,28 @@ export const getCategories = () => {
 			const categories = await db.collection('categories').get()
 			let array = []
 			const bgImg = 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/kitchenBG.png?alt=media&token=cb6585f7-b26b-4bd1-891a-69f1578840ea'
-			categories.forEach((categories)=>{
-				array.push(categories.data())
+			categories.forEach((category)=>{
+				array.push(category.data())
 			})
 			dispatch({type: 'GET_CATEGORIES', payload: array})
+			dispatch({type: 'GET_BG_IMG', payload: bgImg})
+		} catch (e) {
+			alert(e)
+			console.error(e)
+		}
+	}
+}
+
+export const getFoods = () => {
+	return async (dispatch, getState) => {
+		try {
+			const foods = await db.collection('foods').get()
+			let array = []
+			const bgImg = 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/kitchenBG.png?alt=media&token=cb6585f7-b26b-4bd1-891a-69f1578840ea'
+				foods.forEach((food)=>{
+				array.push(food.data())
+			})
+			dispatch({type: 'GET_FOODS', payload: array})
 			dispatch({type: 'GET_BG_IMG', payload: bgImg})
 		} catch (e) {
 			alert(e)

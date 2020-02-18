@@ -24,12 +24,13 @@ import AddSubscriptionScreen from '../screens/AddSubscription'
 import MySearchScreen from '../screens/SearchScreen'
 import NewMySearchScreen from '../screens/NewSearchScreen'
 import ResultsShow from '../screens/ResultsShowScreen'
+import FoodList from '../screens/FoodListScreen'
 
 export const HomeNavigator = createAppContainer(createStackNavigator(
 
   {
     Home: {
-      screen:HomeScreen ,
+      screen:HomeScreen,
       navigationOptions: ({ navigation }) => ({
         headerTitle:(<AppTitle title='Food-E-Call' />),
         headerLeft: (
@@ -66,6 +67,7 @@ export const HomeNavigator = createAppContainer(createStackNavigator(
       header: null
     }
   },
+
     Map: {
       screen: MapScreen,
       navigationOptions: ({ navigation }) => ({
@@ -176,6 +178,13 @@ export const HomeNavigator = createAppContainer(createStackNavigator(
       screen: ResultsShow,
       navigationOptions: {
       header: null
+      }
+    },
+
+    FoodList: {
+      screen: FoodList,
+      navigationOptions: {
+      title: 'Food List',
       }
     },
 

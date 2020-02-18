@@ -33,7 +33,7 @@ class Home extends Component {
 
 
   onPress = () => {
-    this.props.navigation.navigate('MySearch')
+    this.props.navigation.navigate('FoodList')
   }
 
   renderItem = ({ item }) => (

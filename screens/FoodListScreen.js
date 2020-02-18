@@ -1,0 +1,65 @@
+import React, { Component } from "react"
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getFoods } from '../actions/post'
+import { SafeAreaView, FlatList, Image, Text, View } from "react-native"
+import { FoodListItemStyle } from '../AppStyles'
+
+
+
+class FoodList extends Component {
+
+  componentDidMount() {
+    this.props.getFoods()
+  }
+
+
+  renderItem = ({ item }) => (
+    <View>
+      <Text>
+        {item.name}
+      </Text>
+      <Text style={{color:'red'}}>
+        {item.choices.map(choice => choice.title)}
+      </Text>
+      <Text style={{color:'green'}}>
+        {item.choices.map(choice => choice.subTitle)}
+      </Text>
+      <Text style={{color:'blue'}}>
+        {item.choices.map((choice) => choice.options.map((option) => option.selections.map((selection) => selection.title )))}
+      </Text>
+
+    </View>
+)
+
+
+  render() {
+    return (
+        <SafeAreaView style={{flex:1}}>
+          <FlatList
+          style={{marTop:50}}
+          vertical
+          showsVerticalScrollIndicator={false}
+          data={this.props.foods.feed}
+          renderItem={this.renderItem}
+          keyExtractor={item => item.name}
+          />
+        </SafeAreaView>
+
+    )
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getFoods }, dispatch)
+}
+
+const mapStateToProps = (state) => {
+  return {
+    foods: state.foods
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodList)

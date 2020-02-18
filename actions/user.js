@@ -133,8 +133,6 @@ export const signup = () => {
           username: `${firstNm} ${lastNm}`,
           photo: '',
           phone: phone,
-          city: city,
-          state: state,
           addresses: {home:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
                       work:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
                       campus:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
