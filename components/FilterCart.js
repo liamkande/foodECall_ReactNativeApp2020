@@ -16,7 +16,7 @@ const FilterCart = ({ navigation, item }) => {
     <View>
     <TouchableOpacity onPress={() => navigation.navigate('MySearch')}>
       <View style={styles.container}>
-        <AsyncImageAnimated animationStyle={'fade'} placeholderColor={AppStyles.color.placeholder} style={styles.photo} source={{ uri: item.photo }} />
+        <AsyncImageAnimated animationStyle={'fade'} placeholderColor={AppStyles.color.placeholder} style={styles.photo} source={{ uri: item.url }} />
         <View style={styles.overlay} />
         <Text numberOfLines={3} style={styles.title}>
           {item.name}
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   photo: {
     width: 100,
     height: 90,
+    borderRadius:10,
     ...StyleSheet.absoluteFillObject,
   },
   overlay: {

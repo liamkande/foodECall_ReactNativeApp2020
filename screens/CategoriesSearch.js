@@ -32,6 +32,9 @@ class CategoriesSearch extends Component {
 
           keyExtractor={item => item.name}
           />
+
+
+          
         </SafeAreaView>
 
     )

@@ -39,7 +39,7 @@ class Home extends Component {
   renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => this.onPress()}>
       <View style={styles.container}>
-        <AsyncImageAnimated animationStyle={'fade'} placeholderColor={AppStyles.color.placeholder} style={styles.photo} source={{ uri: item.photo }} />
+        <AsyncImageAnimated animationStyle={'fade'} placeholderColor={AppStyles.color.placeholder} style={styles.photo} source={{ uri: item.url}} />
         <View style={styles.overlay} />
         <Text numberOfLines={3} style={styles.title}>
           {item.name}
