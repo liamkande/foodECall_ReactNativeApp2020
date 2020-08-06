@@ -16,10 +16,21 @@ class FoodList extends Component {
 
   renderItem = ({ item }) => (
     <View>
-      <Text>
+      <Image style={{width:100, height:100}} source={{uri: item.mainPhotoURL}}/>
+      <Text style={{fontSize:30}}>
         {item.name}
       </Text>
-      <Text style={{color:'red'}}>
+      <Text style={{color:'green'}}>
+      {item.categories.map(category => category.name)}
+      </Text>
+      <Text style={{color:'gray'}}>
+        {item.displayAddress}
+      </Text>
+     
+  
+      
+
+      {/* <Text style={{color:'red'}}>
         {item.choices.map(choice => choice.title)}
       </Text>
       <Text style={{color:'green'}}>
@@ -27,7 +38,7 @@ class FoodList extends Component {
       </Text>
       <Text style={{color:'blue'}}>
         {item.choices.map((choice) => choice.options.map((option) => option.selections.map((selection) => selection.title )))}
-      </Text>
+      </Text> */}
 
     </View>
 )

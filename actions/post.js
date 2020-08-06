@@ -93,7 +93,7 @@ export const getCategories = () => {
 export const getFoods = () => {
 	return async (dispatch, getState) => {
 		try {
-			const foods = await db.collection('foods').get()
+			const foods = await db.collection('restaurants').get()
 			let array = []
 			const bgImg = 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/kitchenBG.png?alt=media&token=cb6585f7-b26b-4bd1-891a-69f1578840ea'
 				foods.forEach((food)=>{
