@@ -45,7 +45,7 @@ class Main extends Component {
       <ImageBackground style={{width: '100%', height: '100%'}} source={{uri:'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/Food-E-Call_BG-web%402x.png?alt=media&token=dd571cd3-f8fa-4fd7-938d-22af69cf23d6'}}>
       <View style={styles.signInBox}>
       <SafeAreaView style={[styles.container, styles.center]}>
-        <Image style={styles.img} source={{uri:'https://firebasestorage.googleapis.com/v0/b/food-e-call-website.appspot.com/o/logo%404x.png?alt=media&token=a3343777-ca30-45a4-91e8-d58acfd44e4d'}} />
+        <Image style={styles.img} source={{uri:'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/appLogo.png?alt=media&token=05d7f946-dbf7-46fd-909c-9cc4adbfb330'}} />
         <Text style={styles.txt}>The food delivery app, designed</Text>
         <Text style={styles.txt}>with you in mind<FontAwesome
           name='heart'

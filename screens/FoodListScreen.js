@@ -7,6 +7,7 @@ import { FoodListItemStyle } from '../AppStyles'
 
 
 
+
 class FoodList extends Component {
 
   componentDidMount() {
@@ -16,7 +17,7 @@ class FoodList extends Component {
 
   renderItem = ({ item }) => (
     <View>
-      <Image style={{width:100, height:100}} source={{uri: item.mainPhotoURL}}/>
+      <Image style={{width:200, height:200}} source={{uri: item.mainPhotoURL}}/>
       <Text style={{fontSize:30}}>
         {item.name}
       </Text>
@@ -26,6 +27,8 @@ class FoodList extends Component {
       <Text style={{color:'gray'}}>
         {item.displayAddress}
       </Text>
+
+    
      
   
       

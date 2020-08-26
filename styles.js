@@ -165,9 +165,10 @@ export default styles = StyleSheet.create({
   },
   img: {
     width: 133,
-    height: 147.13,
+    height: 133,
     alignSelf: 'center',
-    marginBottom: 5
+    marginBottom: 5,
+    marginTop: '20%'
   },
   txt: {
     color: 'white',
