@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { getFoods } from '../actions/post'
 import { SafeAreaView, FlatList, Image, Text, View } from "react-native"
 import { FoodListItemStyle } from '../AppStyles'
+import ResultsDetail from '../components/ResultsDetail'
 
 
 
@@ -17,7 +18,7 @@ class FoodList extends Component {
 
   renderItem = ({ item }) => (
     <View>
-      <Image style={{width:200, height:200}} source={{uri: item.mainPhotoURL}}/>
+      {/* <Image style={{width:200, height:200}} source={{uri: item.mainPhotoURL}}/>
       <Text style={{fontSize:30}}>
         {item.name}
       </Text>
@@ -26,7 +27,7 @@ class FoodList extends Component {
       </Text>
       <Text style={{color:'gray'}}>
         {item.displayAddress}
-      </Text>
+      </Text> */}
 
     
      
@@ -51,12 +52,16 @@ class FoodList extends Component {
     return (
         <SafeAreaView style={{flex:1}}>
           <FlatList
-          style={{marTop:50}}
-          vertical
-          showsVerticalScrollIndicator={false}
+          horizontal
+          showsHorizontalScrollIndicator={false}
           data={this.props.foods.feed}
           renderItem={this.renderItem}
           keyExtractor={item => item.name}
+          renderItem={({item}) => {
+            return (
+                <ResultsDetail result={item}/>
+            )
+          }}
           />
         </SafeAreaView>
 

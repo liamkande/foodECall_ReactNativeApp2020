@@ -9,7 +9,7 @@ const ResultsDetail = ({navigation, result}) => {
   //console.log(result.id)
   return (
     <View style={styles.background}>
-      <Image style={styles.image} source={{ uri: !result.image_url ? 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/Asset%201.jpg?alt=media&token=5c14befd-83cc-4aaa-9ac1-896d5908e50c' : result.image_url }} />
+      <Image style={styles.image} source={{ uri: !result.mainPhotoURL  ? 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/Asset%201.jpg?alt=media&token=5c14befd-83cc-4aaa-9ac1-896d5908e50c' : result.mainPhotoURL }} />
       <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
       {!result.is_closed &&
         <View>
@@ -29,11 +29,11 @@ const ResultsDetail = ({navigation, result}) => {
         </View>
       <View style={styles.topText}>
         <Text style={styles.name}>{result.name}
-        <Text style={styles.price}> {result.price}</Text>
+        {/* <Text style={styles.price}> {result.price}</Text> */}
         </Text>
         </View>
         <View style={{alignSelf: 'center', justifyContent:'center',alignItems:'center'}}>
-        <FlatList
+        {/* <FlatList
           style={{flexDirection:'row',flexWrap:'wrap'}}
           horizontal
           data={result.categories}
@@ -45,7 +45,7 @@ const ResultsDetail = ({navigation, result}) => {
 
             )
           }}
-      />
+      /> */}
       </View>
       <View style={styles.bottomText}>
       <View style={{flexDirection: 'row'}}>
@@ -62,8 +62,8 @@ const ResultsDetail = ({navigation, result}) => {
             size={35}
             name='md-star-outline'
             />
-          <Text style={styles.rating}>{result.rating}</Text>
-            <Text style={styles.count}>({result.review_count})</Text>
+          {/* <Text style={styles.rating}>{result.rating}</Text>
+            <Text style={styles.count}>({result.review_count})</Text> */}
         </View>
       </View>
     </View>
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     height:310,
     marginLeft:10,
     borderRadius: 5,
+    marginTop:10
   },
   image: {
     alignSelf:'center',

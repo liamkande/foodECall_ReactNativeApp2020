@@ -29,8 +29,8 @@ class SignUp extends Component {
       <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/SignUpBG.png')}>
         <View style={styles.container}>
         { routeName === 'Edit' &&
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')} >
-          <Image style={styles.roundImage} source={{uri: !this.props.user.photo ? 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/Asset%201.jpg?alt=media&token=5c14befd-83cc-4aaa-9ac1-896d5908e50c' : this.props.user.photo}}/>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')} style={{marginTop:70}} >
+          <Image style={styles.roundImage} source={{uri: !this.props.user.photo ? 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/appLogo.png?alt=media&token=05d7f946-dbf7-46fd-909c-9cc4adbfb330' : this.props.user.photo}}/>
           <Text style={styles.subtitle}>Upload Photo</Text>
         </TouchableOpacity>
         }

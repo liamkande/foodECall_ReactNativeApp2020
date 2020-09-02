@@ -24,7 +24,7 @@ import AddSubscriptionScreen from '../screens/AddSubscription'
 import MySearchScreen from '../screens/SearchScreen'
 import NewMySearchScreen from '../screens/NewSearchScreen'
 import ResultsShow from '../screens/ResultsShowScreen'
-import FoodList from '../screens/FoodListScreen'
+import RestaurantList from '../screens/RestaurantListScreen'
 
 export const HomeNavigator = createAppContainer(createStackNavigator(
 
@@ -181,10 +181,10 @@ export const HomeNavigator = createAppContainer(createStackNavigator(
       }
     },
 
-    FoodList: {
-      screen: FoodList,
+    RestaurantList: {
+      screen: RestaurantList,
       navigationOptions: {
-      title: 'Food List',
+      title: 'Restaurants',
       }
     },
 
