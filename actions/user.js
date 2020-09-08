@@ -101,6 +101,8 @@ export const getUser = (uid) => {
 }
 
 
+
+
 export const updateUser = () => {
   return async ( dispatch, getState )  => {
     const { uid, photo, addresses, payments } = getState().user

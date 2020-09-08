@@ -92,6 +92,8 @@ export const getCategories = () => {
 
 export const getFoods = () => {
 	return async (dispatch, getState) => {
+		
+			
 		try {
 			const foods = await db.collection('restaurants').get()
 			let array = []
@@ -101,9 +103,11 @@ export const getFoods = () => {
 			})
 			dispatch({type: 'GET_FOODS', payload: array})
 			dispatch({type: 'GET_BG_IMG', payload: bgImg})
+			
 		} catch (e) {
 			alert(e)
 			console.error(e)
 		}
 	}
 }
+

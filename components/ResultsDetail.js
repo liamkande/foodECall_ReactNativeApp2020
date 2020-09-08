@@ -5,47 +5,57 @@ import OpenTag from '../components/OpenTag'
 import ClosedTag from '../components/ClosedTag'
 
 
-const ResultsDetail = ({navigation, result}) => {
-  //console.log(result.id)
+
+const ResultsDetail = ({userId,result}) => {
+
+  
   return (
     <View style={styles.background}>
       <Image style={styles.image} source={{ uri: !result.mainPhotoURL  ? 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/Asset%201.jpg?alt=media&token=5c14befd-83cc-4aaa-9ac1-896d5908e50c' : result.mainPhotoURL }} />
       <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-      {!result.is_closed &&
-        <View>
-          <OpenTag />
-        </View>
-      }
-      {result.is_closed &&
-        <View>
-          <ClosedTag />
-        </View>
-      }
+ 
+
+{result.hours.map((item, index) => {
+                return (
+                    <View key={index}>
+                             {item.is_open_now &&
+                                <View>
+                                  <OpenTag />
+                                </View>
+                              }
+                              {!item.is_open_now &&
+                                <View>
+                                    <ClosedTag />
+                                </View>
+                              }
+                    </View>
+                )
+            })}
+
+
         <Ionicons
-          style={{color:'gray', alignSelf:'flex-end', marginTop:5}}
-          size={20}
-          name='ios-heart-empty'
+          style={{color:'red', alignSelf:'flex-end', marginTop:5}}
+          size={25}
+          name={result.favorided.includes(userId) ? 'ios-heart' : 'ios-heart-empty'}
           />
         </View>
       <View style={styles.topText}>
         <Text style={styles.name}>{result.name}
-        {/* <Text style={styles.price}> {result.price}</Text> */}
+        <Text style={styles.price}> {result.price}</Text>
         </Text>
         </View>
         <View style={{alignSelf: 'center', justifyContent:'center',alignItems:'center'}}>
-        {/* <FlatList
+        <FlatList
           style={{flexDirection:'row',flexWrap:'wrap'}}
           horizontal
           data={result.categories}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => {
             return (
-
-              <Text style={styles.categories}> •{item.alias} </Text>
-
+              <Text style={styles.categories}> •{item.name} </Text>
             )
           }}
-      /> */}
+      />
       </View>
       <View style={styles.bottomText}>
       <View style={{flexDirection: 'row'}}>
@@ -62,8 +72,8 @@ const ResultsDetail = ({navigation, result}) => {
             size={35}
             name='md-star-outline'
             />
-          {/* <Text style={styles.rating}>{result.rating}</Text>
-            <Text style={styles.count}>({result.review_count})</Text> */}
+          <Text style={styles.rating}>{result.yelpRating}</Text>
+            <Text style={styles.count}>({result.yelpReviewCount})</Text>
         </View>
       </View>
     </View>

@@ -31,6 +31,16 @@ const user = (state = {}, action) => {
   }
 }
 
+const userId = (state = {}, action) => {
+  switch (action.type) {
+    case 'UID':
+        return {...state, uid: action.payload}
+
+      default:
+        return state
+  }
+}
+
 const post = (state= {}, action) => {
   switch (action.type) {
     case 'UPDATE_PHOTO':

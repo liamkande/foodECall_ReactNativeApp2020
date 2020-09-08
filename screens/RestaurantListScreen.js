@@ -13,9 +13,8 @@ class FoodList extends Component {
 
   componentDidMount() {
     this.props.getFoods()
+  
   }
-
-
 
 
   render() {
@@ -26,13 +25,16 @@ class FoodList extends Component {
           horizontal
           showsHorizontalScrollIndicator={false}
           data={this.props.foods.feed}
-          keyExtractor={item => item.name}
+          keyExtractor={item => item.id}
           renderItem={({item}) => {
             return (
-                <ResultsDetail result={item}/>
+
+                <ResultsDetail result={item} userId={this.props.uid} />
+                
             )
           }}
           />
+
          </ImageBackground>
         </SafeAreaView>
 
@@ -42,12 +44,13 @@ class FoodList extends Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getFoods }, dispatch)
+  return bindActionCreators({ getFoods}, dispatch)
 }
 
 const mapStateToProps = (state) => {
   return {
-    foods: state.foods
+    foods: state.foods,
+    uid: state.user.login.uid
   }
 }
 
