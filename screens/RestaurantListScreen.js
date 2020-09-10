@@ -20,7 +20,7 @@ class RestaurantList extends Component {
 
   render() {
 
-    const {uid } = this.props
+    const {uid, getRestaurants } = this.props
     return (
         <SafeAreaView style={{flex:1}}>
           <ImageBackground style={{width: '100%', height: '100%'}}source={{uri: `${this.props.restaurants.bgImg}`}}>
@@ -31,7 +31,7 @@ class RestaurantList extends Component {
                 keyExtractor={item => item.id}
                 renderItem={({item}) => {
                   return ( 
-                    <ResultsDetail result={item} userId={uid} reload={this.props.getRestaurants}/> 
+                    <ResultsDetail result={item} userId={uid} reload={getRestaurants}/> 
                   )
               }}
               />

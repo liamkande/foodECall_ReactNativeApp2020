@@ -9,7 +9,7 @@ import { likeRestaurant, unlikeRestaurant } from '../actions/post'
 
 
 
-const ResultsDetail = ({userId,result, reload}) => {
+const ResultsDetail = ({userId,result,reload}) => {
   
   return (
     <View style={styles.background}>

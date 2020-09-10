@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import db from '../config/firebase'
 import uuid from 'uuid'
+import { reload } from 'expo/build/Updates/Updates'
 
 
 export const updatePhoto = (input) => {
@@ -113,11 +114,10 @@ export const getRestaurants = () => {
 }
 
 export const likeRestaurant = (id, uid,reload) => {
-	return  (dispatch, getState) => {
-	
+	return async () => {
+
 		try {
-		
-			db.collection('restaurants').doc(id).update({
+			await db.collection('restaurants').doc(id).update({
 				favorided: firebase.firestore.FieldValue.arrayUnion(uid)
 			 })
 			reload()
@@ -132,14 +132,14 @@ export const likeRestaurant = (id, uid,reload) => {
 }
 
 export const unlikeRestaurant = (id, uid, reload) => {
-	return (dispatch, getState) => {
-	  //const { uid } = getState().user
+	return async() => {
+	  
 	  try {
-		db.collection('restaurants').doc(id).update({
+		await db.collection('restaurants').doc(id).update({
 			favorided: firebase.firestore.FieldValue.arrayRemove(uid)
 		})
+		
 		reload()
-		//dispatch(this.getRestaurants)
 	  } catch(e) {
 		console.error(e)
 	  }
