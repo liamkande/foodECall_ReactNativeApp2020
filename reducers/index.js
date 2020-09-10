@@ -31,15 +31,6 @@ const user = (state = {}, action) => {
   }
 }
 
-const userId = (state = {}, action) => {
-  switch (action.type) {
-    case 'UID':
-        return {...state, uid: action.payload}
-
-      default:
-        return state
-  }
-}
 
 const post = (state= {}, action) => {
   switch (action.type) {
@@ -69,9 +60,9 @@ const categories = (state= {}, action) => {
 }
 
 
-const foods = (state= {}, action) => {
+const restaurants = (state= {}, action) => {
   switch (action.type) {
-    case 'GET_FOODS':
+    case 'GET_RESTAURANTS':
       return {...state, feed: action.payload}
       case 'GET_BG_IMG':
         return {...state, bgImg: action.payload}
@@ -98,7 +89,7 @@ const rootReducer = combineReducers({
   post,
   modal,
   categories,
-  foods,
+  restaurants,
 })
 
 export default rootReducer

@@ -3,11 +3,13 @@ import { View, Image, Text, StyleSheet, FlatList, ImageBackground } from 'react-
 import { Ionicons, Feather } from '@expo/vector-icons'
 import OpenTag from '../components/OpenTag'
 import ClosedTag from '../components/ClosedTag'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { likeRestaurant, unlikeRestaurant } from '../actions/post'
 
 
 
-const ResultsDetail = ({userId,result}) => {
 
+const ResultsDetail = ({userId,result, reload}) => {
   
   return (
     <View style={styles.background}>
@@ -32,12 +34,13 @@ const ResultsDetail = ({userId,result}) => {
                 )
             })}
 
-
-        <Ionicons
-          style={{color:'red', alignSelf:'flex-end', marginTop:5}}
-          size={25}
-          name={result.favorided.includes(userId) ? 'ios-heart' : 'ios-heart-empty'}
-          />
+          <TouchableOpacity onPress={result.favorided.includes(userId) ? unlikeRestaurant(result.id, userId, reload) :  likeRestaurant(result.id, userId, reload)}>
+            <Ionicons
+            style={{color:'red', alignSelf:'flex-end', marginTop:5}}
+            size={25}
+            name={result.favorided.includes(userId) ? 'ios-heart' : 'ios-heart-empty'}
+            />
+          </TouchableOpacity>
         </View>
       <View style={styles.topText}>
         <Text style={styles.name}>{result.name}

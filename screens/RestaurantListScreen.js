@@ -1,41 +1,42 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getFoods } from '../actions/post'
-import { SafeAreaView, FlatList, ImageBackground } from "react-native"
+import { getRestaurants, likePost} from '../actions/post'
+import { SafeAreaView, FlatList, ImageBackground, View, Text, Image } from "react-native"
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import { FoodListItemStyle } from '../AppStyles'
 import ResultsDetail from '../components/ResultsDetail'
 
 
 
 
-class FoodList extends Component {
+class RestaurantList extends Component {
 
   componentDidMount() {
-    this.props.getFoods()
-  
+    this.props.getRestaurants()
+    
   }
 
 
   render() {
+
+    const {uid } = this.props
     return (
         <SafeAreaView style={{flex:1}}>
-      <ImageBackground style={{width: '100%', height: '100%'}}source={{uri: `${this.props.foods.bgImg}`}}>
-          <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={this.props.foods.feed}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => {
-            return (
+          <ImageBackground style={{width: '100%', height: '100%'}}source={{uri: `${this.props.restaurants.bgImg}`}}>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={this.props.restaurants.feed}
+                keyExtractor={item => item.id}
+                renderItem={({item}) => {
+                  return ( 
+                    <ResultsDetail result={item} userId={uid} reload={this.props.getRestaurants}/> 
+                  )
+              }}
+              />
 
-                <ResultsDetail result={item} userId={this.props.uid} />
-                
-            )
-          }}
-          />
-
-         </ImageBackground>
+            </ImageBackground>
         </SafeAreaView>
 
     )
@@ -44,15 +45,15 @@ class FoodList extends Component {
 
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getFoods}, dispatch)
+  return bindActionCreators({ getRestaurants}, dispatch)
 }
 
 const mapStateToProps = (state) => {
   return {
-    foods: state.foods,
+    restaurants: state.restaurants,
     uid: state.user.login.uid
   }
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoodList)
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantList)

@@ -90,19 +90,20 @@ export const getCategories = () => {
 	}
 }
 
-export const getFoods = () => {
+export const getRestaurants = () => {
 	return async (dispatch, getState) => {
-		
 			
 		try {
-			const foods = await db.collection('restaurants').get()
+			const restaurants = await db.collection('restaurants').get()
 			let array = []
+			let color = 'ios-heart'
 			const bgImg = 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/kitchenBG.png?alt=media&token=cb6585f7-b26b-4bd1-891a-69f1578840ea'
-				foods.forEach((food)=>{
-				array.push(food.data())
+			restaurants.forEach((restaurant)=>{
+				array.push(restaurant.data())
 			})
-			dispatch({type: 'GET_FOODS', payload: array})
+			dispatch({type: 'GET_RESTAURANTS', payload: array})
 			dispatch({type: 'GET_BG_IMG', payload: bgImg})
+			
 			
 		} catch (e) {
 			alert(e)
@@ -110,4 +111,39 @@ export const getFoods = () => {
 		}
 	}
 }
+
+export const likeRestaurant = (id, uid,reload) => {
+	return  (dispatch, getState) => {
+	
+		try {
+		
+			db.collection('restaurants').doc(id).update({
+				favorided: firebase.firestore.FieldValue.arrayUnion(uid)
+			 })
+			reload()
+			
+		} catch (e) {
+			alert(e)
+			console.error(e)
+		}
+
+		return 
+	}
+}
+
+export const unlikeRestaurant = (id, uid, reload) => {
+	return (dispatch, getState) => {
+	  //const { uid } = getState().user
+	  try {
+		db.collection('restaurants').doc(id).update({
+			favorided: firebase.firestore.FieldValue.arrayRemove(uid)
+		})
+		reload()
+		//dispatch(this.getRestaurants)
+	  } catch(e) {
+		console.error(e)
+	  }
+	}
+  }
+
 
