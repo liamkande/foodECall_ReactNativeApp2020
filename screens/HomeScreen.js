@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getCategories } from '../actions/post'
+import { getCategories, getRestaurants } from '../actions/post'
 import { Ionicons } from '@expo/vector-icons'
 import { FlatList, Modal, SafeAreaView, Text, View, TouchableHighlight, TextInput, Image, TouchableOpacity, ImageBackground, Dimensions, StyleSheet } from 'react-native'
 import firebase from 'firebase'
@@ -32,12 +32,16 @@ class Home extends Component {
 }
 
 
-  onPress = () => {
+  onPress = (id) => {
+ 
+    this.props.getRestaurants([id])
+    
     this.props.navigation.navigate('RestaurantList')
+    
   }
 
   renderItem = ({ item }) => (
-    <TouchableOpacity onPress={() => this.onPress()}>
+    <TouchableOpacity onPress={() => this.onPress(item.id)}>
       <View style={styles.container}>
         <AsyncImageAnimated animationStyle={'fade'} placeholderColor={AppStyles.color.placeholder} style={styles.photo} source={{ uri: item.url}} />
         <View style={styles.overlay} />
@@ -58,7 +62,7 @@ class Home extends Component {
           numColumns={3}
           data={this.props.categories.feed}
           renderItem={this.renderItem}
-          keyExtractor={item => item.name}
+          keyExtractor={item => item.id}
           />
         </SafeAreaView>
       </ImageBackground>
@@ -74,12 +78,14 @@ Home.navigationOptions = {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getCategories}, dispatch)
+  return bindActionCreators({ getCategories, getRestaurants}, dispatch)
 }
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories
+    categories: state.categories,
+  
+    
   }
 }
 

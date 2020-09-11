@@ -66,6 +66,8 @@ const restaurants = (state= {}, action) => {
       return {...state, feed: action.payload}
       case 'GET_BG_IMG':
         return {...state, bgImg: action.payload}
+        case 'GET_CURRENT_ID':
+          return {...state, newId: action.payload}
     default:
       return state
   }

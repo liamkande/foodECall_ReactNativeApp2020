@@ -75,6 +75,7 @@ export const getPosts = () => {
 
 export const getCategories = () => {
 	return async (dispatch, getState) => {
+		
 		try {
 			const categories = await db.collection('categories').get()
 			let array = []
@@ -91,19 +92,23 @@ export const getCategories = () => {
 	}
 }
 
-export const getRestaurants = () => {
+export const getRestaurants = (id) => {
 	return async (dispatch, getState) => {
 			
 		try {
-			const restaurants = await db.collection('restaurants').get()
+			
+			const restaurants = await db.collection('restaurants').where('categoriesID', 'array-contains-any', id).get()
+			//const query = await db.collection('restaurants').where('postId', '==', post.id).where('likerId', '==', uid).get()
 			let array = []
-			let color = 'ios-heart'
 			const bgImg = 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/kitchenBG.png?alt=media&token=cb6585f7-b26b-4bd1-891a-69f1578840ea'
 			restaurants.forEach((restaurant)=>{
 				array.push(restaurant.data())
+				
 			})
+			
 			dispatch({type: 'GET_RESTAURANTS', payload: array})
 			dispatch({type: 'GET_BG_IMG', payload: bgImg})
+			dispatch({type: 'GET_CURRENT_ID', payload: id})
 			
 			
 		} catch (e) {
@@ -113,33 +118,31 @@ export const getRestaurants = () => {
 	}
 }
 
-export const likeRestaurant = (id, uid,reload) => {
+export const likeRestaurant = (id, uid, categoriesID, reload) => {
 	return async () => {
-
+		
 		try {
+			
 			await db.collection('restaurants').doc(id).update({
 				favorided: firebase.firestore.FieldValue.arrayUnion(uid)
 			 })
-			reload()
-			
+			 reload([categoriesID])
 		} catch (e) {
 			alert(e)
 			console.error(e)
 		}
-
-		return 
 	}
 }
 
-export const unlikeRestaurant = (id, uid, reload) => {
+export const unlikeRestaurant = (id, uid,categoriesID,reload ) => {
 	return async() => {
-	  
 	  try {
+		
 		await db.collection('restaurants').doc(id).update({
 			favorided: firebase.firestore.FieldValue.arrayRemove(uid)
 		})
 		
-		reload()
+		reload([categoriesID])
 	  } catch(e) {
 		console.error(e)
 	  }
