@@ -22,11 +22,11 @@ state= {
 
   render() {
 
-    const {uid, getRestaurants, restaurants, currentId } = this.props
+    const {uid, getRestaurants, restaurants, filterId, bgImg } = this.props
   
     return (
         <SafeAreaView style={{flex:1}}>
-          <ImageBackground style={{width: '100%', height: '100%'}}source={{uri: `${this.props.restaurants.bgImg}`}}>
+          <ImageBackground style={{width: '100%', height: '100%'}}source={{uri:`${bgImg}`}}>
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -35,7 +35,7 @@ state= {
                 renderItem={({item}) => {
                 
                   return ( 
-                    <ResultsDetail result={item} userId={uid} categoriesID={this.state.newId} reload={getRestaurants}/> 
+                    <ResultsDetail result={item} userId={uid} categoriesID={`${filterId}`} reload={getRestaurants}/> 
                   )
               }}
               />
@@ -56,6 +56,8 @@ const mapStateToProps = (state) => {
   return {
     restaurants: state.restaurants,
     uid: state.user.login.uid,
+    filterId: state.restaurants.filterId,
+    bgImg: state.restaurants.bgImg
    
    
   }

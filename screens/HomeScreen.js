@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getCategories, getRestaurants } from '../actions/post'
+import { getCategories, getRestaurants, updateFilterId } from '../actions/post'
 import { Ionicons } from '@expo/vector-icons'
 import { FlatList, Modal, SafeAreaView, Text, View, TouchableHighlight, TextInput, Image, TouchableOpacity, ImageBackground, Dimensions, StyleSheet } from 'react-native'
 import firebase from 'firebase'
@@ -33,7 +33,7 @@ class Home extends Component {
 
 
   onPress = (id) => {
- 
+    this.props.updateFilterId(id)
     this.props.getRestaurants([id])
     
     this.props.navigation.navigate('RestaurantList')
@@ -78,13 +78,13 @@ Home.navigationOptions = {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getCategories, getRestaurants}, dispatch)
+  return bindActionCreators({ getCategories, getRestaurants, updateFilterId}, dispatch)
 }
 
 const mapStateToProps = (state) => {
   return {
     categories: state.categories,
-  
+   
     
   }
 }

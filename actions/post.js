@@ -92,15 +92,16 @@ export const getCategories = () => {
 	}
 }
 
-export const getRestaurants = (id) => {
+export const getRestaurants = (filterId) => {
 	return async (dispatch, getState) => {
 			
 		try {
 			
-			const restaurants = await db.collection('restaurants').where('categoriesID', 'array-contains-any', id).get()
+			const restaurants = await db.collection('restaurants').where('categoriesID', 'array-contains-any', filterId).get()
 			//const query = await db.collection('restaurants').where('postId', '==', post.id).where('likerId', '==', uid).get()
 			let array = []
 			const bgImg = 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/kitchenBG.png?alt=media&token=cb6585f7-b26b-4bd1-891a-69f1578840ea'
+			
 			restaurants.forEach((restaurant)=>{
 				array.push(restaurant.data())
 				
@@ -108,7 +109,8 @@ export const getRestaurants = (id) => {
 			
 			dispatch({type: 'GET_RESTAURANTS', payload: array})
 			dispatch({type: 'GET_BG_IMG', payload: bgImg})
-			dispatch({type: 'GET_CURRENT_ID', payload: id})
+			dispatch({type: 'GET_FILTER_ID', payload: filterId})
+		
 			
 			
 		} catch (e) {
@@ -118,11 +120,16 @@ export const getRestaurants = (id) => {
 	}
 }
 
+export const updateFilterId = (filterId) => {
+	return {type:'UPDATE_FILTER_ID', payload: filterId}
+  }
+
+
 export const likeRestaurant = (id, uid, categoriesID, reload) => {
-	return async () => {
+	return async (dispatch, getState) => {
 		
 		try {
-			
+		
 			await db.collection('restaurants').doc(id).update({
 				favorided: firebase.firestore.FieldValue.arrayUnion(uid)
 			 })
@@ -135,7 +142,8 @@ export const likeRestaurant = (id, uid, categoriesID, reload) => {
 }
 
 export const unlikeRestaurant = (id, uid,categoriesID,reload ) => {
-	return async() => {
+	return async(dispatch, getState) => {
+		
 	  try {
 		
 		await db.collection('restaurants').doc(id).update({
