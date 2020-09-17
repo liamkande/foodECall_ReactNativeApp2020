@@ -9,7 +9,7 @@ import { likeRestaurant, unlikeRestaurant } from '../actions/post'
 
 
 
-const ResultsDetail = ({userId,result,categoriesID, reload}) => {
+const ResultsDetail = ({userId,result,categoriesID, reFetch}) => {
   
   return (
     <View style={styles.background}>
@@ -34,7 +34,7 @@ const ResultsDetail = ({userId,result,categoriesID, reload}) => {
                 )
             })}
 
-          <TouchableOpacity onPress={result.favorided.includes(userId) ? unlikeRestaurant(result.id, userId,categoriesID, reload) :  likeRestaurant(result.id, userId, categoriesID, reload)}>
+          <TouchableOpacity onPress={result.favorided.includes(userId) ? unlikeRestaurant(result.id, userId,categoriesID, reFetch) :  likeRestaurant(result.id, userId, categoriesID, reFetch)}>
             <Ionicons
             style={{color:'red', alignSelf:'flex-end', marginTop:5}}
             size={25}

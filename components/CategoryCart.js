@@ -10,7 +10,7 @@ import { AppStyles } from '../AppStyles'
 const PRODUCT_ITEM_OFFSET = 3
 const PRODUCT_ITEM_MARGIN = PRODUCT_ITEM_OFFSET * 4
 
-const FilterCart = ({ navigation, item }) => {
+const CategoryCart = ({ navigation, item }) => {
 
   return (
     <View>
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withNavigation(FilterCart)
+export default withNavigation(CategoryCart)

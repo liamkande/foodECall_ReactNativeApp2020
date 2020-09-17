@@ -11,9 +11,9 @@ export const updatePassword = (password) => {
   return {type:'UPDATE_PASSWORD', payload: password}
 }
 
-export const updateCity = (city) => {
-  return {type:'UPDATE_CITY', payload: city}
-}
+// export const updateCity = (city) => {
+//   return {type:'UPDATE_CITY', payload: city}
+// }
 
 export const updateState = (state) => {
   return {type:'UPDATE_STATE', payload: state}
@@ -31,6 +31,9 @@ export const updateLastNm = (lastNm) => {
 export const updatePhone = (phone) => {
   return {type:'UPDATE_PHONE', payload: phone}
 }
+// export const updateCity = (city) => {
+// 	return {type:'UPDATE_CITY', payload: city}
+//   }
 export const updateBio = (bio) => {
   return {type:'UPDATE_BIO', payload: bio}
 }
@@ -103,15 +106,16 @@ export const getUser = (uid) => {
 
 
 
-export const updateUser = () => {
+export const updateUser = (uid) => {
   return async ( dispatch, getState )  => {
-    const { uid, photo, addresses, payments } = getState().user
+    const { phone} = getState().user
 
     try {
       db.collection('users').doc(uid).update({
-        photo: photo,
-        addresses: addresses,
-        payments: payments,
+		phone: phone,
+		
+        // addresses: addresses,
+        // payments: payments,
 
       })
     }
@@ -134,7 +138,8 @@ export const signup = () => {
           lastNm: lastNm,
           username: `${firstNm} ${lastNm}`,
           photo: '',
-          phone: phone,
+		  phone: phone,
+		  city: city,
           addresses: {home:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
                       work:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },
                       campus:{name:'', address1:'', address2:'', city:'', state:'', zipCode:'' },

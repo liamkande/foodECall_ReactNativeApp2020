@@ -54,6 +54,7 @@ const categories = (state= {}, action) => {
       return {...state, feed: action.payload}
       case 'GET_BG_IMG':
         return {...state, bgImg: action.payload}
+
     default:
       return state
   }
@@ -66,10 +67,13 @@ const restaurants = (state= {}, action) => {
       return {...state, feed: action.payload}
       case 'GET_BG_IMG':
         return {...state, bgImg: action.payload}
-        case 'GET_FILTER_ID':
-          return {...state, filterId: action.payload}
-          case 'UPDATE_FILTER_ID':
-            return {...state, filterId: action.payload}
+        case 'GET_CATEGORY_ID':
+          return {...state, categoryId: action.payload}
+          case 'UPDATE_CATEGORY_ID':
+            return {...state, categoryId: action.payload}
+            case 'CURRENT_CITY':
+              return {...state, currentCity: action.payload}
+            
     default:
       return state
   }

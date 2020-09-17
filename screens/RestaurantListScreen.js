@@ -16,13 +16,11 @@ class RestaurantList extends Component {
    //this.props.getRestaurants()
     
   }
-state= {
-  newId: '03abbbe2-e080-4444-972c-df0e29db0e1e'
-}
+
 
   render() {
 
-    const {uid, getRestaurants, restaurants, filterId, bgImg } = this.props
+    const {bgImg , uid, getRestaurants, restaurants, categoryId } = this.props
   
     return (
         <SafeAreaView style={{flex:1}}>
@@ -35,7 +33,7 @@ state= {
                 renderItem={({item}) => {
                 
                   return ( 
-                    <ResultsDetail result={item} userId={uid} categoriesID={`${filterId}`} reload={getRestaurants}/> 
+                    <ResultsDetail result={item} userId={uid} categoriesID={`${categoryId}`}  reFetch={getRestaurants}/> 
                   )
               }}
               />
@@ -54,11 +52,11 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
+    bgImg: state.restaurants.bgImg,
     restaurants: state.restaurants,
     uid: state.user.login.uid,
-    filterId: state.restaurants.filterId,
-    bgImg: state.restaurants.bgImg
-   
+    // currentCity: state.user.login
+    categoryId: state.restaurants.categoryId,
    
   }
 }

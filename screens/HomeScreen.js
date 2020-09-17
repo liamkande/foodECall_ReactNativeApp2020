@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getCategories, getRestaurants, updateFilterId } from '../actions/post'
+import { getCategories, getRestaurants, updateCategoryId} from '../actions/post'
+import { updateEmail, updatePassword, updateFirstNm, updateLastNm, updatePhone, updateCity, signup, updateUser} from '../actions/user'
+
 import { Ionicons } from '@expo/vector-icons'
 import { FlatList, Modal, SafeAreaView, Text, View, TouchableHighlight, TextInput, Image, TouchableOpacity, ImageBackground, Dimensions, StyleSheet } from 'react-native'
 import firebase from 'firebase'
@@ -29,12 +31,14 @@ class Home extends Component {
 
   componentDidMount() {
   this.props.getCategories()
+  
 }
 
 
   onPress = (id) => {
-    this.props.updateFilterId(id)
-    this.props.getRestaurants([id])
+    
+    this.props.updateCategoryId(id)
+    this.props.getRestaurants([id],`${this.props.currentCity}` )
     
     this.props.navigation.navigate('RestaurantList')
     
@@ -78,14 +82,14 @@ Home.navigationOptions = {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getCategories, getRestaurants, updateFilterId}, dispatch)
+  return bindActionCreators({ getCategories, getRestaurants, updateCategoryId, signup, updateUser}, dispatch)
 }
 
 const mapStateToProps = (state) => {
   return {
     categories: state.categories,
+    currentCity: state.user.phone,
    
-    
   }
 }
 

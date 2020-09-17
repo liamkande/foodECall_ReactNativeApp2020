@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { getCategories } from '../actions/post'
 import { FlatList,SafeAreaView, Text, View, TouchableOpacity} from 'react-native'
 import firebase from 'firebase'
-import FilterCart from '../components/FilterCart'
+import CategoryCart from '../components/CategoryCart'
 
 
 
@@ -25,7 +25,7 @@ class CategoriesSearch extends Component {
           data={this.props.categories.feed}
           renderItem={({ item }) => {
             return (
-              <FilterCart item={item} />
+              <CategoryCart item={item} />
 
             )
           }}

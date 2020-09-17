@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Text, View, TextInput, ImageBackground, Image, TouchableOpacity } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { updateEmail, updatePassword, updateFirstNm, updateLastNm, updatePhone, signup, updateUser} from '../actions/user'
+import { updateEmail, updatePassword, updateFirstNm, updateLastNm, updatePhone, updateCity, signup, updateUser} from '../actions/user'
 import styles from '../styles'
 
 
@@ -18,7 +18,7 @@ class SignUp extends Component {
       this.props.signup()
       this.props.navigation.navigate('Home')
     } else {
-      this.props.updateUser()
+      this.props.updateUser('o9YKiQ5CYmYkF0XxwRxBIRJSSUN2')
       this.props.navigation.goBack()
     }
   }
@@ -29,12 +29,34 @@ class SignUp extends Component {
       <ImageBackground style={{width: '100%', height: '100%'}} source={require('../assets/images/SignUpBG.png')}>
         <View style={styles.container}>
         { routeName === 'Edit' &&
+        <View>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Camera')} style={{marginTop:70}} >
           <Image style={styles.roundImage} source={{uri: !this.props.user.photo ? 'https://firebasestorage.googleapis.com/v0/b/food-e-call-nativeapp.appspot.com/o/appLogo.png?alt=media&token=05d7f946-dbf7-46fd-909c-9cc4adbfb330' : this.props.user.photo}}/>
           <Text style={styles.subtitle}>Upload Photo</Text>
         </TouchableOpacity>
+        <TextInput
+          style={styles.border}
+          value={this.props.user.phone}
+          onChangeText={input => this.props.updatePhone(input)}
+          placeholderTextColor='#ffff'
+          placeholder='City'
+        />
+        {/* <TextInput
+          style={styles.border}
+          value={this.props.user.city}
+          onChangeText={input => this.props.updateCity(input)}
+          placeholderTextColor='#ffff'
+          placeholder='City'
+        /> */}
+        <TouchableOpacity style={styles.button} title='SignUp' onPress={this.onPress}>
+          <Text style={{color:'#ffff'}}>DONE</Text>
+        </TouchableOpacity>
+      </View>
+
         }
 
+{ routeName === 'SignUp' &&
+<View>
         <TextInput
           style={styles.border}
           editable={routeName === 'SignUp' ? true : false}
@@ -75,10 +97,11 @@ class SignUp extends Component {
           placeholder='Password'
           secureTextEntry={true}
         />
-        { routeName === 'SignUp' &&
+        
         <TouchableOpacity style={styles.button} title='SignUp' onPress={this.signup}>
           <Text style={{color:'#ffff'}}>DONE</Text>
         </TouchableOpacity>
+        </View>
         }
 
       </View>
@@ -88,7 +111,7 @@ class SignUp extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return ( bindActionCreators({ updateEmail, updatePassword, updateFirstNm, updateLastNm, updatePhone, signup, updateUser }, dispatch)
+  return ( bindActionCreators({ updateEmail, updatePassword, updateFirstNm, updateLastNm, updatePhone, updateCity, signup, updateUser }, dispatch)
 )
 }
 
